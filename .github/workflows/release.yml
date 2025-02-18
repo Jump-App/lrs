@@ -9,14 +9,13 @@ on:
 
 jobs:
   build_release:
-    name: NIF version ${{ matrix.nif }} - ${{ matrix.job.target }} (${{ matrix.job.os }})
+    name: NIF ${{ matrix.job.target }} (${{ matrix.job.os }})
     runs-on: ${{ matrix.job.os }}
     env:
       LRS_FORCE_BUILD: true
     strategy:
       fail-fast: false
       matrix:
-        nif: ["2.17"]
         job:
           - { target: aarch64-apple-darwin        , os: macos-12      }
           - { target: x86_64-apple-darwin         , os: macos-12      }
@@ -52,7 +51,7 @@ jobs:
         project-name: lrs
         project-version: ${{ env.PROJECT_VERSION }}
         target: ${{ matrix.job.target }}
-        nif-version: ${{ matrix.nif }}
+        nif-version: 2.15
         use-cross: ${{ matrix.job.use-cross }}
         project-dir: "native/lrs"
 
