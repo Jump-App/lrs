@@ -1,4 +1,8 @@
 defmodule LRS do
+  @moduledoc """
+  A Rust precompiled NIF for finding the longest recurring substring in a string.
+  """
+
   version = Mix.Project.config()[:version]
 
   use RustlerPrecompiled,
