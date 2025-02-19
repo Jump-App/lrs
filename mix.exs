@@ -1,12 +1,12 @@
 defmodule LRS.MixProject do
   use Mix.Project
 
-  @source_url "https://github.com/Jump/lrs"
+  @source_url "https://github.com/Jump-App/lrs"
 
   def project do
     [
       app: :lrs,
-      version: "0.1.1",
+      version: "0.1.2",
       elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,

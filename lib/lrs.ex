@@ -8,7 +8,7 @@ defmodule LRS do
   use RustlerPrecompiled,
     otp_app: :lrs,
     crate: :lrs,
-    base_url: "https://github.com/Jump/lrs/releases/download/v#{version}",
+    base_url: "https://github.com/Jump-App/lrs/releases/download/v#{version}",
     version: version,
     force_build: System.get_env("LRS_FORCE_BUILD") == "true"
 
