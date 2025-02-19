@@ -48,3 +48,14 @@ jobs:
       - name: Check for compile-time dependencies
         run: mix xref graph --label compile-connected --fail-above 0
         if: always()
+
+      - name: Parse the version
+        run: |
+          echo "PROJECT_VERSION=$(sed -n 's/^      version: "\(.*\)",/\1/p' mix.exs | head -n1)" >> $GITHUB_ENV
+
+      - name: Assert the version begins with a number
+        run: |
+          if [[ ! "${{ env.PROJECT_VERSION }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "${{ env.PROJECT_VERSION }} is not a valid version number"
+            exit 1
+          fi
