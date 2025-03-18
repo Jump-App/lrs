@@ -24,9 +24,14 @@ defmodule LRS do
     longest = longest_repeating_substring(string)
 
     if String.length(longest) > above_size do
-      string
-      |> String.replace(longest, " ", global: false)
-      |> recursively_remove_repeating_substring(above_size)
+      new_string = String.replace(string, longest, " ", global: false)
+
+      # Check if the string actually changed after replacement
+      if new_string != string do
+        recursively_remove_repeating_substring(new_string, above_size)
+      else
+        string
+      end
     else
       string
     end
