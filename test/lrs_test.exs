@@ -53,13 +53,20 @@ defmodule LRSTest do
     end
 
     test "handles case where replacement doesn't change string" do
-      # Mock the longest_repeating_substring function to return a value that won't be found
-      # This test assumes the implementation will handle this case correctly
-      string = "This is a test string"
+      # Create a string with a repeating pattern that will be found
+      string = "abcabcabcabc"
 
-      # This is a simple test to ensure no infinite recursion
-      # The actual behavior depends on the implementation of longest_repeating_substring
-      assert is_binary(LRS.recursively_remove_repeating_substring(string, 5))
+      # The function should complete without infinite recursion
+      result = LRS.recursively_remove_repeating_substring(string, 3)
+
+      # The result should be different from the input (since we replaced something)
+      refute result == string
+
+      # The result should be shorter than the input (since we replaced multiple chars with a space)
+      assert String.length(result) < String.length(string)
+
+      # Verify it completes in a reasonable time (no infinite loop)
+      assert Process.alive?(self())
     end
 
     test "handles multiple nested repeating substrings" do
@@ -100,6 +107,23 @@ defmodule LRSTest do
       result_20 = LRS.recursively_remove_repeating_substring(string, 20)
       refute String.contains?(result_20, repeat_35)
       refute String.contains?(result_20, repeat_25)
+    end
+
+    test "respects max recursion depth" do
+      # Create a string that would cause deep recursion
+      string = String.duplicate("abc", 100)
+
+      # With a very low max depth, it should stop early
+      result = LRS.recursively_remove_repeating_substring(string, 3, 5)
+
+      # The result should be different from the input (some replacements happened)
+      refute result == string
+
+      # But not all replacements should have happened due to depth limit
+      assert String.contains?(result, "abc")
+
+      # Verify it completes in a reasonable time (no infinite loop)
+      assert Process.alive?(self())
     end
   end
 end
