@@ -1,8 +1,9 @@
 %{
-  "liblrs-v0.1.6-nif-2.15-aarch64-apple-darwin.so.tar.gz" => "sha256:9507ac95649b5fe780bad26c199c9133b1f8fa260d0e15f41ea9b863dc6633d9",
-  "liblrs-v0.1.6-nif-2.15-aarch64-unknown-linux-gnu.so.tar.gz" => "sha256:dd80d03a47cef38071e7f8fc6d611ccfccf8b30989b347499ee40bc1a0b561de",
-  "liblrs-v0.1.6-nif-2.15-arm-unknown-linux-gnueabihf.so.tar.gz" => "sha256:00648297154af9ec56a0622bb65e465cdbf727276fd1b5b981631ea14d5dc7de",
-  "liblrs-v0.1.6-nif-2.15-x86_64-apple-darwin.so.tar.gz" => "sha256:c0e93a01c94731cbc08d3b5f14a718e6fdc5749afb8098d6ca62c400f8b83112",
-  "liblrs-v0.1.6-nif-2.15-x86_64-unknown-linux-gnu.so.tar.gz" => "sha256:d945de37f9769eb5f1eb9b88f6ee8a695a839e08e78345ef003df4c5703f36e9",
-  "liblrs-v0.1.6-nif-2.15-x86_64-unknown-linux-musl.so.tar.gz" => "sha256:6c55e558ebf153c0335235423a631c3acaf998dd9980bee1b486ec0bfc5c2437",
+  "liblrs-v0.1.7-nif-2.15-aarch64-apple-darwin.so.tar.gz" => "sha256:8b17f344121d09f500b2320eee7cd5894f36b4c4e0f64c7dcc8cac3b4bee8d34",
+  "liblrs-v0.1.7-nif-2.15-aarch64-unknown-linux-gnu.so.tar.gz" => "sha256:bc31eca4e78deb3ae58a4fa340759245e70178923003faf24cc28354b2a2ef7d",
+  "liblrs-v0.1.7-nif-2.15-aarch64-unknown-linux-musl.so.tar.gz" => "sha256:37717b04f3714a557ff605802625793488090e74b3b21b7e32328747ec998604",
+  "liblrs-v0.1.7-nif-2.15-arm-unknown-linux-gnueabihf.so.tar.gz" => "sha256:d74df6ab74ef79bd0214567be7c36849ea4bf718997303d018f849f18b99e4f1",
+  "liblrs-v0.1.7-nif-2.15-x86_64-apple-darwin.so.tar.gz" => "sha256:21615281593c215573ba043bee326c2cdbbf2199027985fef99b88b82f7a69c1",
+  "liblrs-v0.1.7-nif-2.15-x86_64-unknown-linux-gnu.so.tar.gz" => "sha256:98163c57acc6c430976520d1fdb894388a52fe6aefb5e5611d1d7ecaabc516b4",
+  "liblrs-v0.1.7-nif-2.15-x86_64-unknown-linux-musl.so.tar.gz" => "sha256:3137878e56152fde43908835ea267495993f9a30c1f8a701ef766eefb1771f99"
 }
