@@ -111,7 +111,13 @@ defmodule LRS.Pure do
     else
       candidates = sieve_positions(s, min_chars, Keyword.get(opts, :workers, 1))
       {best, _sorted_positions} = best_among(s, candidates)
-      if count_codepoints(best, 0) >= min_chars, do: best, else: ""
+
+      # `best` is a sub-binary of `s`; copy the result so we don't prevent huge binaries from being garbage collected
+      if count_codepoints(best, 0) >= min_chars do
+        :binary.copy(best)
+      else
+        ""
+      end
     end
   end
 
@@ -122,7 +128,9 @@ defmodule LRS.Pure do
   def longest_repeating_substring_full(s) when is_binary(s) do
     n = byte_size(s)
     {best, _} = scan(:lists.sort(build_suffixes(s, n - 1, [])), n, 0, "", [])
-    best
+
+    # `best` is a sub-binary of `s`; copy the result so we don't prevent huge binaries from being garbage collected
+    :binary.copy(best)
   end
 
   @doc """
@@ -136,7 +144,7 @@ defmodule LRS.Pure do
   def recursively_remove_repeating_substring("", _, _), do: ""
 
   def recursively_remove_repeating_substring(string, above_size, opts)
-      when is_binary(string) and is_integer(above_size) do
+      when is_binary(string) and is_integer(above_size) and above_size >= 0 do
     # A repeat of more than `above_size` characters has at least `above_size + 1` bytes.
     t = max(above_size + 1, 1)
 

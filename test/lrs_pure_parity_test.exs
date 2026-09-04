@@ -67,6 +67,19 @@ defmodule LRSPureParityTest do
     assert_parity(s)
   end
 
+  test "results are copied rather than sub-binaries pinning the input" do
+    s = :crypto.strong_rand_bytes(4_000) |> Base.encode16() |> Kernel.<>("repeat me!repeat me!")
+
+    for result <- [
+          LRS.Pure.longest_repeating_substring(s),
+          LRS.Pure.longest_repeating_substring_at_least(s, 5),
+          LRS.Pure.longest_repeating_substring_full(s)
+        ] do
+      assert result == "repeat me!"
+      assert :binary.referenced_byte_size(result) == byte_size(result)
+    end
+  end
+
   test "random inputs match the NIF" do
     :rand.seed(:exsss, {2026, 9, 4})
 
