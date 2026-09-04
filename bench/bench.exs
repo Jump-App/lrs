@@ -43,8 +43,10 @@ end
 
 impls = [
   {"Rust NIF", &LRS.longest_repeating_substring/1},
-  {"Elixir: suffix sort", &LRS.Pure.longest_repeating_substring/1},
-  {"Elixir: bucketed, min 31 bytes", &LRS.Pure.longest_repeating_substring_at_least(&1, 31)}
+  {"Elixir: sieve + fallback", &LRS.Pure.longest_repeating_substring/1},
+  {"Elixir: sieve, min 31 chars", &LRS.Pure.longest_repeating_substring_at_least(&1, 31)},
+  {"Elixir: sieve, #{System.schedulers_online()} workers",
+   &LRS.Pure.longest_repeating_substring(&1, workers: System.schedulers_online())}
 ]
 
 sizes = [10_000, 50_000, 100_000, 250_000, 500_000, String.length(text)]
@@ -119,6 +121,6 @@ for size <- [100_000, 500_000, String.length(text)] do
   IO.puts("| #{size} | #{iters} | Rust NIF | #{Bench.ms(nif_us)} | 1.00x | #{Bench.mb(nif_rss)} | - |")
 
   IO.puts(
-    "| #{size} | #{iters} | Elixir: bucketed | #{Bench.ms(pure_us)} | #{:erlang.float_to_binary(pure_us / nif_us, decimals: 2)}x | #{Bench.mb(pure_rss)} | #{pure_out == nif_out} |"
+    "| #{size} | #{iters} | Elixir: sieve (incremental) | #{Bench.ms(pure_us)} | #{:erlang.float_to_binary(pure_us / nif_us, decimals: 2)}x | #{Bench.mb(pure_rss)} | #{pure_out == nif_out} |"
   )
 end
