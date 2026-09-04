@@ -7,7 +7,7 @@ defmodule LRS.MixProject do
     [
       app: :lrs,
       version: "0.1.7",
-      elixir: "~> 1.17",
+      elixir: "~> 1.20",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       consolidate_protocols: Mix.env() != :test,
@@ -16,15 +16,20 @@ defmodule LRS.MixProject do
       description: "A Rust NIF for the longest recurring substring algorithm",
       name: "LRS",
       package: package(),
-      aliases: aliases(),
-      preferred_cli_env: [
-        check: :test
-      ]
+      aliases: aliases()
     ]
   end
 
   def application do
     []
+  end
+
+  def cli do
+    [
+      preferred_cli_env: [
+        check: :test
+      ]
+    ]
   end
 
   defp docs do
